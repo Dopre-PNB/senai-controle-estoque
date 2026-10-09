@@ -1,0 +1,28 @@
+{
+  "name": "senai-controle-estoque",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API de controle de estoque dos módulos 1 a 7 do SENAI",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "db:create": "node scripts/criar-banco.js",
+    "test": "node scripts/verificar.js"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^18.0.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.24.5",
+    "sequelize": "^6.37.8"
+  },
+  "overrides": {
+    "sequelize": {
+      "uuid": "11.1.1"
+    }
+  }
+}
