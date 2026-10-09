@@ -90,7 +90,30 @@ São as duas bordas e o primeiro valor externo de cada lado. A faixa 1–100 apr
 
 ## Módulo 7 — nível 3: testar o almoxarifado (pp. 10–11)
 
-1. **Feliz e erro por requisito:** o cadastro aceita dados válidos e recusa dados inválidos; login aceita senha correta e recusa a errada; produto aceita saldo válido e recusa negativo; listagem aceita filtros válidos e recusa parâmetros inválidos; exclusão permite administrador e bloqueia operador; movimentação aceita entrada/saída válidas e recusa tipo/quantidade/saldo inválidos; responsável é o autenticado e não o ID informado no corpo. Segurança cobre senha/hash e token inválido; desempenho mede o tempo; usabilidade confere português; infraestrutura confere Node/MySQL e persistência. A matriz registra quais casos cobrem cada requisito.
+1. **Feliz e erro por requisito:** a tabela responde quais situações verificariam cada um dos 17 requisitos. Ela descreve os resultados esperados; os resultados realmente observados estão em [testes.md](testes.md) e [execucao.json](evidencias/execucao.json).
+
+| Requisito | Caminho feliz e resultado esperado | Caminho de erro e resultado esperado |
+|---|---|---|
+| RF01 — cadastro de usuário | Nome, email exclusivo, senha e perfil válido: 201, usuário persistido sem senha/hash na resposta. | Email repetido, nome ausente ou perfil gerente: 400, sem novo usuário inválido. |
+| RF02 — login | Email e senha corretos: 200 e token do usuário. | Senha errada ou email inexistente: 401 e nenhum token. |
+| RF03 — cadastro de produto | Dados completos e estoque inteiro não negativo: 201; estoque omitido assume zero. | Nome ausente ou estoque negativo/fracionário: 400 e nenhum produto inválido. |
+| RF04 — listagem | Token válido, página/limite positivos e filtros válidos: 200 com array dos produtos correspondentes. | Página zero/fracionária, limite zero ou data inválida: 400 com explicação. |
+| RF05 — exclusão | Administrador exclui ID existente: 200 e produto ausente no banco. | Operador: 403 e produto preservado; administrador com ID inexistente: 404. |
+| RF06 — movimentação | Entrada ou saída válida: 201, saldo ajustado e registro persistido. | Quantidade zero, tipo inválido ou saída acima do saldo: 400, saldo e histórico preservados. |
+| RF07 — responsável automático | Movimentação registra o ID do usuário autenticado. | Corpo tenta informar outro usuario_id: o ID forjado é ignorado e o responsável permanece o do token. |
+| RNF01 — proteção da senha | Cadastro grava hash bcrypt e a resposta não mostra senha/hash. | Se houver senha em texto puro no banco ou senha/hash na resposta, a verificação deve falhar. |
+| RNF02 — token | JWT válido permite acesso; login emite token com expiração de oito horas. | Token ausente, inválido ou expirado: 401 e acesso negado. |
+| RNF03 — desempenho | Cada listagem do ambiente/massa definidos responde em até 2.000 ms. | Se a medição superar 2.000 ms, o requisito deve ser classificado como não atendido. |
+| RNF04 — português | Entrada inválida recebe mensagem em português que explica o problema. | Mensagem ausente, incompreensível ou em outro idioma deve reprovar a verificação de usabilidade. |
+| RNF05 — infraestrutura | API executa em Node.js e grava/consulta os registros no MySQL real. | MySQL indisponível impede preparar/iniciar o sistema; registrar bloqueio de ambiente, sem declarar persistência comprovada. |
+| RN01 — administrador exclui | Administrador autenticado exclui produto existente: 200. | Operador tenta excluir: 403, produto permanece. |
+| RN02 — usuário responsável | Registro contém o ID do usuário identificado pelo token. | Tentativa de atribuir a movimentação a outro ID no corpo é ignorada; responsável continua sendo o autenticado. |
+| RN03 — tipo permitido | Tipos entrada e saida são aceitos em movimentações válidas. | Tipo ajuste: 400 e nenhuma alteração de saldo/histórico. |
+| RN04 — quantidade positiva | Quantidade inteira 1 é aceita, inclusive no limite inferior. | Quantidades 0, −1 ou 1,5: 400 e nenhuma alteração de saldo/histórico. |
+| RN05 — estoque suficiente | Saída de quantidade menor ou igual ao saldo é permitida e não deixa estoque negativo. | Saída maior que o saldo: 400, mantendo saldo e histórico. |
+
+Os erros hipotéticos de senha armazenada/exposta (RNF01), tempo acima do limite (RNF03), mensagem inadequada (RNF04) e indisponibilidade do MySQL (RNF05) não foram provocados como novas execuções. A tabela é a análise dos caminhos solicitada no exercício; não aumenta a contagem dos 22 casos reais.
+
 2. **Casos previstos antes de executar:** usar os dez casos do módulo 7, pp. 8–9, adaptando livros para produtos, e complementar data, responsável, tipo, quantidade e saldo. Os exemplos didáticos abaixo já incluem três erros e valor limite. Seus IDs EX-M7 são distintos dos IDs CT da execução real em `docs/casos.json` e `docs/testes.md`.
 
 | ID | Requisito | Caso | Resultado esperado |
@@ -108,7 +131,7 @@ São as duas bordas e o primeiro valor externo de cada lado. A faixa 1–100 apr
 | EX-M7-11 | RF06/RN05 | Saída exatamente igual ao saldo. | 201 e saldo zero; valor limite válido. |
 | EX-M7-12 | RF06/RN05 | Saída uma unidade acima do saldo. | 400, saldo e histórico não alterados. |
 
-3. **Plano:** testar as seis operações, regras e RNF no Node/MySQL local, com requisições HTTP e conferência no banco. Usar teste de sistema, integração, segurança, desempenho, caixa-preta e valores limite. Entrada: API/banco disponíveis, administrador, operador e pelo menos três produtos. Saída: todos os casos executados, sem defeito crítico/alto aberto. Responsável, versões, massa e duração real ficam registrados em `docs/testes.md`. A aceitação pelo professor depende de avaliação efetiva.
+3. **Plano:** testar as seis operações, regras e RNF no Node/MySQL local, com requisições HTTP e conferência no banco. Usar teste de sistema, integração, segurança, desempenho, caixa-preta e valores limite. Entrada: API/banco disponíveis, administrador, operador e pelo menos três produtos. Saída: todos os casos executados, sem defeito crítico/alto aberto. Pedro é o solicitante e Codex realizou a execução técnica automática. O cronograma realizado em 08/10/2026, com horários locais e fontes de evidência, está em `docs/testes.md`, junto de versões e massa. A aceitação pelo professor depende de avaliação efetiva.
 4. **Rastreabilidade:** `docs/testes.md` e `docs/testes.xlsx` devem cobrir RF01–RF07, RNF01–RNF05 e RN01–RN05. Se a matriz mostrar lacuna, adicionar um caso antes de concluir. Os doze exemplos acima são uma seleção; a matriz completa também cobre cadastro, hash, expiração, data, português e infraestrutura.
-5. **Execução:** `npm test` foi executado contra MySQL real em schema isolado. A rodada final registrou 22 casos, todos aprovados, com obtido, status e evidência no [relatório](testes.md) e em [execucao.json](evidencias/execucao.json). A planilha `testes.xlsx` consolida esses registros.
+5. **Execução:** `npm test` foi executado contra MySQL real em schema isolado. A rodada final automática registrou 22 casos, todos aprovados, com obtido, status e evidência no [relatório](testes.md) e em [execucao.json](evidencias/execucao.json). A planilha `testes.xlsx` consolida esses registros. Em 09/10/2026, os dez cenários práticos foram executados também pela interface do Postman com assistência do Codex, com conferências no MySQL Workbench. Os dez passaram e as 14 capturas estão na [entrega do módulo 7](modulo7/README.md).
 6. **Defeitos e resumo:** a rodada final teve 22 Passou, zero Falhou, zero Bloqueado e zero defeitos abertos; o critério de saída foi atendido. A [rodada inicial](evidencias/execucao-instrumentacao-inicial.json) foi preservada: um falso positivo do verificador foi corrigido, mantendo os resultados esperados, e a regressão completa passou. Para qualquer falha real futura, registrar DFxx com reprodução, esperado/obtido, severidade, evidência e status, corrigir e retestar antes de fechar.

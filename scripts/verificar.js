@@ -472,6 +472,22 @@ function markdownCell(value) {
 }
 function buildReport() {
   const summary = execution.summary;
+  const formatLocal = (value) => {
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? 'não registrado' : date.toLocaleString('pt-BR', {
+      timeZone: 'America/Sao_Paulo', dateStyle: 'short', timeStyle: 'medium',
+    });
+  };
+  const chronology = [
+    '| Etapa | Data e horário local | Fonte da informação |',
+    '| --- | --- | --- |',
+    '| Definição prévia dos casos registrada | ' + formatLocal(execution.expectedDefinition.lastModifiedAt) + ' | expectedDefinition.lastModifiedAt em [execucao.json](evidencias/execucao.json); arquivo carregado antes da execução. |',
+  ];
+  if (execution.verifierRetest) chronology.push(
+    '| Início da rodada inicial preservada | ' + formatLocal(execution.verifierRetest.initialStartedAt) + ' | verifierRetest.initialStartedAt e [evidência inicial](evidencias/execucao-instrumentacao-inicial.json). |',
+    '| Diagnóstico e correção documentados do verificador | Sem horário próprio registrado | DFV01 e verifierRetest em [execucao.json](evidencias/execucao.json). |',
+  );
+  chronology.push('| Execução automática desta rodada | ' + formatLocal(execution.startedAt) + ' a ' + formatLocal(execution.finishedAt) + ' | startedAt, finishedAt, casos e resumo em [execucao.json](evidencias/execucao.json). |');
   const lines = [
     '# Plano e execução de testes',
     '',
@@ -487,7 +503,13 @@ function buildReport() {
     '',
     'Critérios de saída: todos os casos executados e aprovados; nenhum defeito crítico ou alto aberto. A exigência de aprovação de todos os casos é mais estrita que o critério mínimo do material.',
     '',
-    'Responsável e momento: execução reproduzível pelo comando npm test; esta rodada começou em ' + execution.startedAt + ' e terminou em ' + execution.finishedAt + ' (UTC). Fuso de referência: America/Sao_Paulo.',
+    'Responsáveis do trabalho: Pedro — solicitante; Codex — preparação e execução técnica da entrega original. Esta rodada é executada automaticamente pelo script verificar.js, acionado com npm test; o script não registra a identidade de quem acionou o comando.',
+    '',
+    'Cronograma realizado, no horário de São Paulo (America/Sao_Paulo, UTC−03:00):',
+    '',
+    ...chronology,
+    '',
+    'Os horários originais em UTC permanecem na evidência JSON. Esta rodada comprova somente a execução automática; não comprova execução manual no Postman nem aprovação pelo professor. A prática por interface e a entrega complementar são documentadas em [Módulo 7](modulo7/README.md).',
     '',
     'Pré-condições, passos e esperados foram registrados antes de executar em [casos.json](casos.json). Sua impressão SHA-256 nesta rodada é ' + execution.expectedDefinition.sha256 + '.',
     '',

@@ -118,5 +118,7 @@ Para reproduzir as chamadas no Postman:
 - [Exercícios respondidos](docs/exercicios.md): atividades dos módulos 2, 6 e 7.
 - [Plano e resultados dos testes](docs/testes.md): esperado, obtido, status, evidência, defeitos e resumo.
 - [Planilha de testes](docs/testes.xlsx): registro dos casos e cobertura dos requisitos.
+- [Módulo 7](docs/modulo7/README.md): entrega complementar e registro da prática por interface.
+- [Documento do módulo 7](docs/modulo7/Modulo7_Testes.docx): relatório editável para entrega acadêmica.
 
 A aceitação pelo professor depende da avaliação efetiva do trabalho. Repositório: [Dopre-PNB/senai-controle-estoque](https://github.com/Dopre-PNB/senai-controle-estoque), privado.

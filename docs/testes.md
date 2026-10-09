@@ -12,7 +12,20 @@ Critérios de entrada: configuração local válida, banco acessível, schema no
 
 Critérios de saída: todos os casos executados e aprovados; nenhum defeito crítico ou alto aberto. A exigência de aprovação de todos os casos é mais estrita que o critério mínimo do material.
 
-Responsável e momento: execução reproduzível pelo comando npm test; esta rodada começou em 2026-10-09T01:37:11.706Z e terminou em 2026-10-09T01:37:15.667Z (UTC). Fuso de referência: America/Sao_Paulo.
+Responsáveis: Pedro é o solicitante do trabalho. Codex realizou a preparação técnica, a execução automática, o diagnóstico do verificador e a documentação dos resultados. Estes registros não atribuem a Pedro uma execução manual no Postman nem uma aprovação pelo professor.
+
+Cronograma realizado, no horário de São Paulo (America/Sao_Paulo, UTC−03:00):
+
+| Etapa | Data e horário local | Fonte da informação |
+| --- | --- | --- |
+| Definição prévia dos casos registrada | 08/10/2026, 22:30:53 | `expectedDefinition.lastModifiedAt` em [execucao.json](evidencias/execucao.json); o arquivo foi carregado antes dos testes. |
+| Início da rodada inicial | 08/10/2026, 22:36:10 | `verifierRetest.initialStartedAt` e [evidência inicial](evidencias/execucao-instrumentacao-inicial.json). |
+| Diagnóstico e correção do verificador | Após a rodada inicial e antes da rodada final; sem horário próprio registrado | DFV01 e `verifierRetest` em [execucao.json](evidencias/execucao.json). |
+| Reteste e regressão dos 22 casos | 08/10/2026, 22:37:11 a 22:37:15 | `startedAt`, `finishedAt`, casos e resumo em [execucao.json](evidencias/execucao.json). |
+
+Os horários originais em UTC permanecem na evidência JSON. Este relatório registra a rodada automática. Em 09/10/2026, os dez cenários práticos também foram executados no Postman com assistência do Codex, com conferências no MySQL Workbench e 14 capturas. Todos passaram; os registros dessa execução estão na entrega do módulo 7.
+
+A entrega complementar e o registro da prática por interface estão em [Módulo 7](modulo7/README.md).
 
 Pré-condições, passos e esperados foram registrados antes de executar em [casos.json](casos.json). Sua impressão SHA-256 nesta rodada é 46a61b9f5553e29d29cb7cde292b8ecc7694c9a757af21b990015952915a771d.
 
