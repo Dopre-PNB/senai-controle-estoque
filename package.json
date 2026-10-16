@@ -2,7 +2,7 @@
   "name": "senai-controle-estoque",
   "version": "1.0.0",
   "private": true,
-  "description": "API de controle de estoque dos módulos 1 a 7 do SENAI",
+  "description": "Sistema de controle de estoque dos módulos 1 a 9 do SENAI",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",

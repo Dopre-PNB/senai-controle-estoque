@@ -25,8 +25,6 @@
         <label for="produto_id">Produto</label>
         <select id="produto_id" required>
           <option value="">Selecione um produto</option>
-          <option value="1">Caderno</option>
-          <option value="2">Caneta</option>
         </select>
         <label for="tipo">Tipo</label>
         <select id="tipo" required>
@@ -46,18 +44,13 @@
           <thead>
             <tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th></tr>
           </thead>
-          <tbody id="lista-movimentacoes">
-            <tr>
-              <td>01/10/2026</td><td>Caderno</td><td><span class="etiqueta entrada">Entrada</span></td><td>10</td>
-            </tr>
-            <tr>
-              <td>02/10/2026</td><td>Caderno</td><td><span class="etiqueta saida">Saída</span></td><td>3</td>
-            </tr>
-          </tbody>
+          <tbody id="lista-movimentacoes"></tbody>
         </table>
       </div>
     </section>
   </main>
   <footer class="rodape">Estoque Braga © 2026 | Pedro do Nascimento Braga | Turma 996</footer>
+  <script src="js/comum.js"></script>
+  <script src="js/movimentacoes.js"></script>
 </body>
 </html>

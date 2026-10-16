@@ -288,6 +288,20 @@ tr:hover td {
   color: #991b1b;
 }
 
+/* 13. Mensagens e botões desativados */
+.sucesso {
+  color: #15803d;
+}
+
+.erro {
+  color: #dc2626;
+}
+
+.botao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Exercício: modo escuro automático, alterando apenas variáveis. */
 @media (prefers-color-scheme: dark) {
   :root {

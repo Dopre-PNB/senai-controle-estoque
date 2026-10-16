@@ -5,4 +5,8 @@ async function cadastrar(req, res) {
   res.status(201).json(movimentacao);
 }
 
-module.exports = { cadastrar };
+async function listar(req, res) {
+  res.json(await movimentacaoService.listar());
+}
+
+module.exports = { cadastrar, listar };

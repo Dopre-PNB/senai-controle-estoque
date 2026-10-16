@@ -33,4 +33,8 @@ async function cadastrar(dados, usuario) {
   });
 }
 
-module.exports = { cadastrar };
+async function listar() {
+  return Movimentacao.findAll({ order: [['createdAt', 'DESC']] });
+}
+
+module.exports = { cadastrar, listar };

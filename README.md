@@ -1,8 +1,8 @@
 # Controle de estoque do almoxarifado
 
-API para aplicar os sete módulos de Desenvolvimento de Sistemas do SENAI. O domínio é um almoxarifado, adaptação da biblioteca solicitada no módulo 6, p. 5.
+Sistema para aplicar os módulos 1 a 9 de Desenvolvimento de Sistemas do SENAI. O domínio é um almoxarifado, adaptação da biblioteca solicitada no módulo 6, p. 5.
 
-O projeto oferece cadastro de usuários, login, cadastro/listagem/exclusão de produtos e movimentações de entrada ou saída. As regras ficam nos services, com rotas, controllers, models e middlewares separados (módulo 2, pp. 1–3).
+O projeto oferece cadastro de usuários, login, cadastro/listagem/exclusão de produtos e movimentações de entrada ou saída. As telas usam HTML, CSS e JavaScript, servidos pelo próprio Express. As regras ficam nos services, com rotas, controllers, models e middlewares separados (módulo 2, pp. 1–3).
 
 ## Preparação
 
@@ -39,6 +39,14 @@ O usuário MySQL configurado precisa ter permissão para criar o banco; alternat
 
 O `.env` e `node_modules/` ficam fora do Git. O `.env.example` documenta a configuração sem dados reais (módulo 1, pp. 3–5).
 
+## Telas — módulos 8 e 9
+
+Com o servidor iniciado, abra `http://localhost:3000`. Use **Criar conta** para cadastrar um usuário e depois entre com email e senha. As páginas são login, painel, produtos, movimentações, sobre e cadastro. O visual Estoque Braga inclui menu ativo, modo escuro automático e adaptação para computador, tablet e celular.
+
+Na tela de produtos, cadastre, busque por nome e use a paginação de cinco itens. A exclusão exige perfil administrador. Em movimentações, selecione um produto e registre uma entrada ou saída; o saldo e o histórico são atualizados. **Sair** encerra a sessão.
+
+Os exemplos de livros dos documentos foram adaptados para produtos, mantendo o domínio já definido no módulo 6. Os scripts usam a API existente, token no navegador e tratamento de mensagens e sessão expirada, conforme o módulo 9.
+
 ## API
 
 Envie o corpo como JSON. Nas rotas protegidas, use o cabeçalho `Authorization: Bearer TOKEN`, substituindo TOKEN pelo valor recebido no login.
@@ -51,6 +59,7 @@ Envie o corpo como JSON. Nas rotas protegidas, use o cabeçalho `Authorization: 
 | GET /produtos | Autenticado | `pagina`, `limite`, `nome`, `data` opcionais. |
 | DELETE /produtos/:id | Administrador autenticado | ID na rota. |
 | POST /movimentacoes | Autenticado | `produto_id`, `tipo`, `quantidade`. |
+| GET /movimentacoes | Autenticado | Histórico por data decrescente. |
 
 Cadastro de usuário:
 
@@ -114,11 +123,13 @@ Para reproduzir as chamadas no Postman:
 5. Confira a persistência no MySQL. `npm test` faz as verificações de banco, hash e datas controladas automaticamente; a coleção não cria o banco nem inicia o servidor.
 
 - [Requisitos e modelagem](docs/requisitos.md): RF01–RF07, RNF01–RNF05 e RN01–RN05.
-- [Plano revisado](docs/plano.md): sequência e escopo restritos aos sete módulos.
+- [Plano revisado](docs/plano.md): sequência original dos módulos 1 a 7.
 - [Exercícios respondidos](docs/exercicios.md): atividades dos módulos 2, 6 e 7.
 - [Plano e resultados dos testes](docs/testes.md): esperado, obtido, status, evidência, defeitos e resumo.
 - [Planilha de testes](docs/testes.xlsx): registro dos casos e cobertura dos requisitos.
 - [Módulo 7](docs/modulo7/README.md): entrega complementar e registro da prática por interface.
 - [Documento do módulo 7](docs/modulo7/Modulo7_Testes.docx): relatório editável para entrega acadêmica.
+- [Módulo 8](docs/modulo8/testes.md): verificação das telas e dos exercícios.
+- [Módulo 9](docs/modulo9/testes.md): roteiro de integração e evidências.
 
 A aceitação pelo professor depende da avaliação efetiva do trabalho. Repositório: [Dopre-PNB/senai-controle-estoque](https://github.com/Dopre-PNB/senai-controle-estoque), privado.
