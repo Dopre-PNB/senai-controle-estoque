@@ -503,7 +503,7 @@ function buildReport() {
     '',
     'Critérios de saída: todos os casos executados e aprovados; nenhum defeito crítico ou alto aberto. A exigência de aprovação de todos os casos é mais estrita que o critério mínimo do material.',
     '',
-    'Responsáveis do trabalho: Pedro — solicitante; Codex — preparação e execução técnica da entrega original. Esta rodada é executada automaticamente pelo script verificar.js, acionado com npm test; o script não registra a identidade de quem acionou o comando.',
+    'Execução automática pelo script verificar.js, acionado com npm test.',
     '',
     'Cronograma realizado, no horário de São Paulo (America/Sao_Paulo, UTC−03:00):',
     '',

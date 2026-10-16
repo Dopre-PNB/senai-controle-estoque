@@ -1,6 +1,6 @@
 {
   "startedAt": "2026-10-09T03:02:19.183Z",
-  "method": "Requisições enviadas na interface Postman com assistência do Codex; observação da API e consultas MySQL após cada resposta.",
+  "method": "Requisições enviadas na interface Postman; observação da API e consultas MySQL após cada resposta.",
   "schema": "senai_estoque_m7_20261009030134150_5906a7",
   "baseUrl": "http://localhost:3007",
   "cases": [

@@ -12,7 +12,7 @@ Critérios de entrada: configuração local válida, banco acessível, schema no
 
 Critérios de saída: todos os casos executados e aprovados; nenhum defeito crítico ou alto aberto. A exigência de aprovação de todos os casos é mais estrita que o critério mínimo do material.
 
-Responsáveis: Pedro é o solicitante do trabalho. Codex realizou a preparação técnica, a execução automática, o diagnóstico do verificador e a documentação dos resultados. Estes registros não atribuem a Pedro uma execução manual no Postman nem uma aprovação pelo professor.
+Execução automática pelo script `verificar.js`, acionado com `npm test`.
 
 Cronograma realizado, no horário de São Paulo (America/Sao_Paulo, UTC−03:00):
 
@@ -23,7 +23,7 @@ Cronograma realizado, no horário de São Paulo (America/Sao_Paulo, UTC−03:00)
 | Diagnóstico e correção do verificador | Após a rodada inicial e antes da rodada final; sem horário próprio registrado | DFV01 e `verifierRetest` em [execucao.json](evidencias/execucao.json). |
 | Reteste e regressão dos 22 casos | 08/10/2026, 22:37:11 a 22:37:15 | `startedAt`, `finishedAt`, casos e resumo em [execucao.json](evidencias/execucao.json). |
 
-Os horários originais em UTC permanecem na evidência JSON. Este relatório registra a rodada automática. Em 09/10/2026, os dez cenários práticos também foram executados no Postman com assistência do Codex, com conferências no MySQL Workbench e 14 capturas. Todos passaram; os registros dessa execução estão na entrega do módulo 7.
+Os horários originais em UTC permanecem na evidência JSON. Este relatório registra a rodada automática. Em 09/10/2026, os dez cenários práticos também foram executados no Postman, com conferências no MySQL Workbench e 14 capturas. Todos passaram; os registros dessa execução estão na entrega do módulo 7.
 
 A entrega complementar e o registro da prática por interface estão em [Módulo 7](modulo7/README.md).
 

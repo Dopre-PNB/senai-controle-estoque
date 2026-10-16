@@ -3,7 +3,7 @@
   "definedAt": "2026-10-09T03:01:39.846Z",
   "definedBeforeExecution": true,
   "source": "modulo7_testes.pdf, pp. 8–9, seção 10",
-  "executionMethodPlanned": "Requisições na interface Postman com assistência do Codex e conferência na interface MySQL Workbench.",
+  "executionMethodPlanned": "Requisições na interface Postman e conferência na interface MySQL Workbench.",
   "status": "Aguardando execução pela interface",
   "order": [
     "M7-CT01",

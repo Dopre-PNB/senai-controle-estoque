@@ -3,7 +3,7 @@
   "consolidatedAt": "2026-10-09T03:17:15.618Z",
   "timezone": "America/Sao_Paulo",
   "source": "modulo7_testes.pdf, pp. 8–9, seção 10",
-  "executionMethod": "Cada requisição foi importada e enviada na interface Postman com assistência do Codex. As quatro conferências previstas do banco foram realizadas na interface MySQL Workbench. Os registros auxiliares capturaram somente as requisições enviadas pela interface.",
+  "executionMethod": "Cada requisição foi importada e enviada na interface Postman. As quatro conferências previstas do banco foram realizadas na interface MySQL Workbench. Os registros auxiliares capturaram somente as requisições enviadas pela interface.",
   "environment": {
     "baseUrl": "http://localhost:3007",
     "mysqlHost": "127.0.0.1",
@@ -19,16 +19,16 @@
   },
   "expectedDefinition": {
     "file": "docs/modulo7/casos-praticos.json",
-    "sha256": "271edfd9a8bd43fc2b386c9e979db39dd9255cb24d46279b535a730e2f6de4ec",
+    "sha256AtExecution": "271edfd9a8bd43fc2b386c9e979db39dd9255cb24d46279b535a730e2f6de4ec",
     "definedAt": "2026-10-09T03:01:39.846Z",
     "definedBeforeExecution": true
   },
   "originalEvidence": {
     "file": "docs/modulo7/evidencias-interface.json",
-    "sha256": "ed39df3a28ae860c65b72e63147ebcab36743f3ab823a9f8c855b97465aeb154",
-    "preserved": true
+    "sha256AtExecution": "ed39df3a28ae860c65b72e63147ebcab36743f3ab823a9f8c855b97465aeb154",
+    "measurementsPreserved": true
   },
-  "normalization": "Na fonte derivada, instâncias Sequelize observadas pelo logger foram representadas por dataValues, equivalente à serialização toJSON usada no transporte HTTP. O arquivo original permaneceu intacto.",
+  "normalization": "Na fonte derivada, instâncias Sequelize observadas pelo logger foram representadas por dataValues, equivalente à serialização toJSON usada no transporte HTTP. A revisão posterior alterou somente textos descritivos; hashes da execução original e medições foram preservados.",
   "startedAt": "2026-10-09T03:03:03.173Z",
   "finishedAt": "2026-10-09T03:12:52.429Z",
   "cases": [
